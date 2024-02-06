@@ -1,0 +1,42 @@
+# Guessing Game in Python
+
+import random
+
+# Choose a random word
+chosen_word = "Bano Qabil".upper()
+
+# Initialize variables for the game
+attempts = 3
+guessed_letters = []
+
+print("Welcome to the Word Guessing Game!")
+
+# Loop for guessing the word
+while attempts > 0:
+    print(" ".join([letter if letter in guessed_letters else "_" for letter in chosen_word]))
+    
+    first_letter = chosen_word[0]
+    middle_letter = chosen_word[len(chosen_word)//2]
+    last_letter = chosen_word[-1]
+
+    print(f"Hint: First letter: {first_letter}, Middle letter: {middle_letter}, Last letter: {last_letter}")
+
+    guess = input("Guess a letter or the whole word: ").upper()
+
+    if guess in guessed_letters:
+        print("You've already guessed that letter. Try again.")
+        continue
+
+    guessed_letters.append(guess)
+
+    if guess == chosen_word or "".join(guessed_letters) == chosen_word:
+        print("Congratulations! You guessed the correct word:", chosen_word)
+        break
+    else:
+        print("Incorrect guess. Try again.")
+        attempts -= 1
+
+# Display the result of the game
+if attempts == 0:
+    print(f"Sorry, you ran out of attempts. The correct word was: {chosen_word}")
+print("Thanks for playing the Word Guessing Game!")
